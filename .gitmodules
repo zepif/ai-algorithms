@@ -1,0 +1,6 @@
+[submodule "GAN"]
+	path = GAN
+	url = https://github.com/zepif/ai_digit_generator.git
+[submodule "Perceptron"]
+	path = Perceptron
+	url = https://github.com/zepif/man2020.git
