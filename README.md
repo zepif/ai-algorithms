@@ -1,2 +1,2 @@
 # ai-algorithms
-Some implementation of AI algorithms
+A bunch of simple ML algorithms implemented in Python 3
