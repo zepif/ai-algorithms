@@ -12,10 +12,10 @@ def main() -> None:
 
     model = LinRegModel(X.shape[1])
 
-    J_Hist = model.train(X, y, maxIters = 1 * (10**3), 
-                         alpha = 1 * (10**-5), convergenceThreshold = 1 * (10**-5))
+    J_Hist = model.train(X, y, maxIters = 5 * (10**5), 
+                         alpha = 1 * (10**-6), convergenceThreshold = 1 * (10**-5))
 
-    draw(model, X, y, J_Hist, bool3D=True)
+    draw(model, X, y, J_Hist, bool3D=False)
 
 def draw(model, X: np.ndarray, y: np.ndarray, J_Hist: list, bool3D: bool = False) -> None:
     fig = plt.figure()
@@ -42,11 +42,13 @@ def drawCostHistory(J_Hist: list, plot) -> None:
     plot.set_aspect(len(J_Hist)/max(J_Hist))
 
 def drawPrediction2D(model, X: np.ndarray, y: np.ndarray, plot) -> None:
-    plot.scatter(X, y)
-    plot.plot(X, model.predict(X))
+    X_values = X[:, 0]
+
+    plot.scatter(X_values, y, s=10, c="blue", label="Real")
+    plot.plot(X_values, model.predict(X), c="red", label="Predicted")
     plot.set(xlabel='X', ylabel='Y')
     plot.set_title('Prediction')
-    plot.set_aspect(max(X)/max(Y))
+    plot.set_aspect(max(X_values)/max(y))
 
 def drawPrediction3D(model, X: np.ndarray, y: np.ndarray, plot) -> None:
     plot.scatter(X[:, 0], X[:, 1], y, s=0.5, c="blue")
