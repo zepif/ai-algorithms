@@ -1,10 +1,13 @@
 import numpy as np
-from costs import rmse
+from costs import mse, rmse, mae, mape
 
 class LinRegModel:
     def __init__(self, inputs: int, Theta: np.ndarray = None, costFunc: str = "MSE") -> None:
         self.costFunctions = {
-            "MSE" : rmse
+            "RMSE" : rmse,
+            "MSE" : mse,
+            "MAE" : mae,
+            "MAPE" : mape
         }
 
         self.thetas = np.random.rand(inputs) if Theta is None else Theta

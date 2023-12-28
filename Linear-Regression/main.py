@@ -7,15 +7,15 @@ def main() -> None:
     file_path = "data/kc_house_data_NaN.csv"
     data = pd.read_csv(file_path)
 
-    X = data.iloc[:, np.r_[4, 6]].to_numpy()
+    X = data.iloc[:, np.r_[3, 4, 6, 10, 11, 12, 15, 17, 18]].to_numpy()
     y = data.iloc[:, 3].to_numpy()
 
     model = LinRegModel(X.shape[1])
 
-    J_Hist = model.train(X, y, maxIters = 3 * (10**5), 
-                         alpha = 1 * (10**-3), convergenceThreshold = 1 * (10**-5))
+    J_Hist = model.train(X, y, maxIters = 2 * (10**5), 
+                         alpha = 3 * (10**-2), convergenceThreshold = 1 * (10**-4))
 
-    draw(model, X, y, J_Hist, bool3D=False)
+    draw(model, X, y, J_Hist, bool3D=True)
 
 def draw(model, X: np.ndarray, y: np.ndarray, J_Hist: list, bool3D: bool = False) -> None:
     fig = plt.figure()
@@ -44,7 +44,7 @@ def drawCostHistory(J_Hist: list, plot) -> None:
 def drawPrediction2D(model, X: np.ndarray, y: np.ndarray, plot) -> None:
     X_values = X[:, 0]
 
-    plot.scatter(X_values, y, s=10, c="blue", label="Real")
+    plot.scatter(X_values, y, s=7, c="blue", label="Real")
     plot.plot(X_values, model.predict(X), c="red", label="Predicted")
     plot.set(xlabel='X', ylabel='Y')
     plot.set_title('Prediction')
