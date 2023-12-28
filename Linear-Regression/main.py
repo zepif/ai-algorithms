@@ -12,7 +12,7 @@ def main() -> None:
 
     model = LinRegModel(X.shape[1])
 
-    J_Hist = model.train(X, y, maxIters = 5 * (10**4), 
+    J_Hist = model.train(X, y, maxIters = 3 * (10**5), 
                          alpha = 1 * (10**-3), convergenceThreshold = 1 * (10**-5))
 
     draw(model, X, y, J_Hist, bool3D=False)
